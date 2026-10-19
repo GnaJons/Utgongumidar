@@ -1,11 +1,19 @@
 'use client';
 import {useEffect,useRef,useState, type FormEvent, type ReactNode} from 'react';
-import {ArrowRight,ArrowLeft,Check,Clock3} from 'lucide-react';
+import {ArrowRight,ArrowLeft,Check,Clock3,Moon,Sun} from 'lucide-react';
 import {confidenceLabels,parseNumber,type StudentTicket} from '../lib/tickets';
 export {api} from '../api';
 import {api,signOut,teacherSession} from '../api';
+function ThemeToggle(){
+ const [mode,setMode]=useState<'light'|'dark'|'system'>(()=>{try{const saved=localStorage.getItem('exit-ticket-theme');if(saved==='light'||saved==='dark')return saved;}catch{}return 'system';});
+ const [systemDark,setSystemDark]=useState(()=>window.matchMedia('(prefers-color-scheme: dark)').matches);
+ const dark=mode==='system'?systemDark:mode==='dark';
+ useEffect(()=>{const media=window.matchMedia('(prefers-color-scheme: dark)');const update=()=>setSystemDark(media.matches);media.addEventListener('change',update);return()=>media.removeEventListener('change',update);},[]);
+ useEffect(()=>{if(mode==='system')delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=mode;try{if(mode!=='system')localStorage.setItem('exit-ticket-theme',mode);}catch{}},[mode]);
+ return <button className="button text-button theme-toggle" onClick={()=>setMode(dark?'light':'dark')} aria-label={dark?'Skipta í ljóst útlit':'Skipta í dökkt útlit'}>{dark?<Sun size={16}/>:<Moon size={16}/>}<span>{dark?'Ljóst útlit':'Dökkt útlit'}</span></button>;
+}
 export function Header({teacher=false}:{teacher?:boolean}){
- return <header className="site-header"><a className="brand" href="#/">Útgöngumiðar<small>Hlíðaskóli</small></a><div className="header-actions"><a className="header-link" href={teacher?'#/':'#/kennari'}>{teacher?<><ArrowLeft size={15}/>Nemendasíða</>:'Kennarainngangur'}</a>{teacher&&teacherSession()&&<button className="button text-button" onClick={()=>signOut()}>Skrá út</button>}</div></header>;
+ return <header className="site-header"><a className="brand" href="#/">Útgöngumiðar<small>Hlíðaskóli</small></a><div className="header-actions"><ThemeToggle/><a className="header-link" href={teacher?'#/':'#/kennari'}>{teacher?<><ArrowLeft size={15}/>Nemendasíða</>:'Kennarainngangur'}</a>{teacher&&teacherSession()&&<button className="button text-button" onClick={()=>signOut()}>Skrá út</button>}</div></header>;
 }
 export function Footer(){return <footer><span>GGJ · Hlíðaskóli</span><span>Gudborg.Gna.Jonsdottir@Reykjavik.is</span></footer>;}
 export function Modal({children,onClose,wide=false}:{children:ReactNode;onClose:()=>void;wide?:boolean}){

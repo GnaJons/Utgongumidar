@@ -6,7 +6,7 @@ const question=z.discriminatedUnion('type',[
 ]);
 export const ticketSchema=z.object({
  title:z.string().trim().min(3).max(120),grade:z.number().int().min(9).max(10),lota:z.number().int().min(13).max(35),lesson:z.number().int().min(1).max(40),
- source:z.string().trim().min(3).max(300),coreOnly:z.literal(true),questions:z.tuple([question,question]).refine(q=>q[1].type==='choice','Önnur spurning þarf fjóra valmöguleika.')
+ source:z.string().trim().max(300).default(''),coreOnly:z.literal(true),questions:z.tuple([question,question]).refine(q=>q[1].type==='choice','Önnur spurning þarf fjóra valmöguleika.')
 }).refine(t=>t.grade===(t.lota<=24?9:10),'Lotur 13–24 tilheyra 9. bekk og lotur 25–35 tilheyra 10. bekk.');
 export type Ticket=z.infer<typeof ticketSchema>;
 export type StudentTicket=Omit<Ticket,'questions'>&{questions:Array<{type:'number'|'choice';prompt:string;unit?:string;options?:string[]}>};

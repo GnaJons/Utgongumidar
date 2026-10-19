@@ -44,5 +44,9 @@ let old=0,formulaLike=0;raw.eachRow(r=>{if(r.getCell(7).value==='Nei – eldra s
 ok(old===2&&formulaLike===2,'superseded attempt marked and formula-like names preserved safely');
 ok(wb.getWorksheet('Leiðbeiningar').getCell('B5').value instanceof Date,'real Excel date');
 const empty=await makeLotaWorkbook({...data,sessions:[]});const ew=new ExcelJS.Workbook();await ew.xlsx.load(empty);ok(ew.getWorksheet('Lotuyfirlit').rowCount===1,'empty export does not fabricate students');
+const withoutSource=structuredClone(data);for(const s of withoutSource.sessions)s.content.source='';
+const without=analyseLota(withoutSource);
+const practice=without.learners.flatMap(l=>feedbackFor(l,without.slots).practice);
+ok(practice.length>0&&practice.every(p=>!p.includes('Sjá:')&&!p.includes('undefined')),'feedback with no source has no empty reference');
 await rm('.test-build',{recursive:true,force:true});
 console.log(`${n} report and XLSX checks passed.`);

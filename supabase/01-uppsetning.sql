@@ -68,9 +68,9 @@ begin
  or (t->>'grade') is null or (t->>'grade') not in ('9','10')
  or coalesce(t->>'lota','') !~ '^[1-9][0-9]?$'
  or coalesce(t->>'lesson','') !~ '^([1-9]|[1-3][0-9]|40)$'
- or jsonb_typeof(t->'source') is distinct from 'string' or length(trim(t->>'source')) not between 3 and 300
+ or (t ? 'source' and (jsonb_typeof(t->'source') is distinct from 'string' or length(trim(t->>'source'))>300))
  or (t->'coreOnly') is distinct from 'true'::jsonb
- or jsonb_typeof(t->'questions') is distinct from 'array' then raise exception 'Yfirfarðu heiti, árgang, lotu og tilvísun í kjarnadæmi.'; end if;
+ or jsonb_typeof(t->'questions') is distinct from 'array' then raise exception 'Yfirfarðu heiti, árgang, lotu og spurningar.'; end if;
  if (t->>'lota')::int not between 13 and 35 or (t->>'grade')::int <> (case when (t->>'lota')::int<=24 then 9 else 10 end) then raise exception 'Lotur 13–24 tilheyra 9. bekk og lotur 25–35 tilheyra 10. bekk.'; end if;
  if jsonb_array_length(t->'questions')<>2 then raise exception 'Miðinn þarf tvær námsspurningar.'; end if;
  for i in 0..1 loop

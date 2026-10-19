@@ -93,5 +93,20 @@ await denied(()=>teacher({action:'save',ticket:{...sample,grade:9,lota:28}}),/Lo
 await denied(()=>teacher({action:'save',ticket:{...sample,lota:36}}),/Lotur 13/);
 const badHint=structuredClone(sample);badHint.questions[0].practice='a'.repeat(301);
 await denied(()=>teacher({action:'save',ticket:badHint}),/Æfingaábending/);
+// Empty closed sessions must be deletable; a source reference is optional.
+await teacher({action:'save',ticket:{...sample,title:'Miði án tilvísunar',source:''}});
+const noSource=(await get()).tickets.find(t=>t.content.title==='Miði án tilvísunar');
+ok(noSource.content.source==='','empty source saves');
+const omittedSource={...sample,title:'Miði án source-reits'};delete omittedSource.source;
+await teacher({action:'save',ticket:omittedSource});
+ok((await get()).tickets.some(t=>t.content.title===omittedSource.title),'omitted source saves');
+for(const source of [null,123,'x'.repeat(301)])await denied(()=>teacher({action:'save',ticket:{...sample,source}}),/Yfirfarðu/);
+const noReplies=await teacher({action:'open',ticketId:noSource.id,group:'Tóm prófun'});
+await denied(()=>teacher({action:'deleteSession',id:noReplies.id}),/Lokaðu/);
+await teacher({action:'close',id:noReplies.id});
+await denied(()=>teacher({action:'deleteSession',id:noReplies.id},B),/Lokaðu/);
+await teacher({action:'deleteSession',id:noReplies.id});
+ok(!(await get()).sessions.some(s=>s.id===noReplies.id),'closed session with zero replies is deleted');
+ok((await get()).tickets.some(t=>t.id===noSource.id),'empty session deletion keeps template');
 await db.query('update utgongumidar.teachers set enabled=false where user_id=$1',[B]);await denied(()=>get(null,B),/Kennarainnskráning/);
 console.log(`${checks} database and permission checks passed.`);await db.close();

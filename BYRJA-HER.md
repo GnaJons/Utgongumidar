@@ -4,11 +4,16 @@
 
 Aðalskráin `index.html` er beint á rót pakkans. Stuðningsskrár eru í `docs`. Þú þarft ekki að setja upp forrit á tölvunni eða keyra byggingarskipanir til að birta hana.
 
-## Uppfærsla 19. október 2026 · útgáfa 1.2
+## Uppfærsla 19. október 2026 · útgáfa 1.3
 
 Útlitið sameinar hlýjan krembakgrunn og ryðbrúnar áherslur með þéttum miðalista, efri valmynd og lotum vinstra megin. Í síma raðast árgangar og lotur efst.
 
-Kennaraaðgangurinn, miðarnir og niðurstöður eru í sama Supabase-verkefni. Þú notar sama netfang og lykilorð og áður. Ekki þarf að keyra SQL eða stofna aðgang aftur vegna útlitsbreytingarinnar.
+- **Útlit:** Síðan fylgir ljósri/dökkri stillingu tækisins. Hnappurinn **Dökkt útlit / Ljóst útlit** efst skiptir um liti og valið helst í sama vafra.
+- **Dagsetningar:** Íslensk mánaðarheiti, t.d. 19. október 2026.
+- **Miðagerð:** Enginn staðfestingarreitur fyrir kjarnadæmi. Tilvísun er valfrjáls og falin undir aukavalinu í ritlinum.
+- **Eyðing:** Einnig er hægt að eyða lokaðri fyrirlögn með 0 svör. Hnappurinn heitir þá **Eyða fyrirlögn**.
+
+Kennaraaðgangurinn, miðarnir og niðurstöður eru í sama Supabase-verkefni. Þú notar sama netfang og lykilorð og áður. Gagnagrunnurinn hefur þegar verið uppfærður fyrir valfrjálsar tilvísanir. Ekki þarf að keyra SQL eða stofna aðgang aftur.
 
 ### Uppfæra núverandi GitHub-vef
 
@@ -26,7 +31,7 @@ Nýju JavaScript-skrárnar í `docs/assets` þurfa allar að fylgja; Excel-hluti
 
 - **Möppur:** 9. bekkur hefur lotur 13–24, 10. bekkur hefur lotur 25–35. Allar 23 loturnar eru til sem möppur, líka tómar lotur. Miði raðast í rétta möppu þegar þú velur lotu við stofnun eða innflutning.
 - **Excel fyrir lotu:** Opnaðu lotu og veldu **Sækja lotu í Excel**. Veldu hóp (eða alla hópa), tímabil og hvort opnir miðar eigi að vera með. Sjálfgefið eru aðeins lokaðir miðar á núverandi skólaári til dagsins í dag.
-- **Endurgjöf:** Excel-skráin hefur blöðin Leiðbeiningar, Lotuyfirlit, Endurgjöf, Svör og Fyrirlagnir. Röng svör kalla fram æfingaábendingu. Hana má skrifa við hverja spurningu í ritlinum; annars er vísað í spurninguna og kjarnadæmin. Sjálfsmat er sýnt sér, án stiga.
+- **Endurgjöf:** Excel-skráin hefur blöðin Leiðbeiningar, Lotuyfirlit, Endurgjöf, Svör og Fyrirlagnir. Röng svör kalla fram æfingaábendingu. Hana má skrifa við hverja spurningu í ritlinum; annars er vísað í spurninguna. Tilvísun fylgir aðeins ef hún hefur verið skráð. Sjálfsmat er sýnt sér, án stiga.
 - **Eyða niðurstöðum:** Undir **Niðurstöður** opnarðu rétta lotu. Fyrir lokaðan miða velurðu **Eyða niðurstöðum** og staðfestir. Þá er fyrirlögninni og öllum svörum hennar eytt, en miðinn sjálfur helst í miðasafninu. Leggja má hann aftur fyrir með nýjum kóða. Sæktu niðurstöðurnar fyrst ef þú vilt varðveita þær. Ekki er hægt að afturkalla eyðingu.
 
 Notaðu sama heiti hóps í allri lotunni. Nemendur þurfa að nota sama nafn eða kóða; samnefndir nemendur þurfa aðgreinandi nöfn eða kóða. Nýjasta svar við sömu útgáfu miða er notað í lotuyfirlitinu, en öll skil sjást á blaðinu Svör. Kerfið er ekki með bekkjarlista: nemendur sem hafa aldrei skilað svari birtast ekki. Vantar svör teljast ekki röng.
@@ -128,7 +133,7 @@ QR-kóðar fara beint á GitHub-miðann. Kennarainnskráning úr Google Sites op
 
 ## Dagleg notkun
 
-- **Nýr miði**: skrifaðu tvær námsspurningar og tilvísun í kjarnadæmin. Spurning 1 er tölusvar eða fjórir valmöguleikar. Spurning 2 er alltaf með fjórum valmöguleikum. Sjálfsmatið fylgir sjálfkrafa.
+- **Nýr miði**: skrifaðu tvær námsspurningar. Tilvísun í námsefni er valfrjáls. Spurning 1 er tölusvar eða fjórir valmöguleikar. Spurning 2 er alltaf með fjórum valmöguleikum. Sjálfsmatið fylgir sjálfkrafa.
 - **Flytja inn miða**: sendu dæmablaðið hingað í spjallið og biddu um JSON-miða fyrir þetta kerfi, eingöngu úr kjarnadæmum. Flyttu skrána inn og yfirfarðu áður en þú opnar fyrir nemendur.
 - **Opna fyrir hóp**: nýr kóði fyrir hverja fyrirlögn. Breyting á miðasafninu breytir ekki spurningum í eldri fyrirlögn.
 - **Sækja lotu í Excel**: raunveruleg XLSX-vinnubók fyrir alla lotuna. CSV-niðurhal einstakra miða er áfram í boði.

@@ -2,9 +2,9 @@
 
 **Byrjaðu á [BYRJA-HER.md](BYRJA-HER.md).** Tilbúin `index.html` er á rótinni; stuðningsskrár eru í `docs/`. Veldu `main` og `/(root)` í GitHub Pages. Forsíðan birtist án Supabase; tenging er nauðsynleg áður en tekið er við svörum. ZIP-skráin hefur enga auka ytri möppu.
 
-## Útlitsuppfærsla 1.2
+## Uppfærsla 1.3
 
-Krembakgrunnur og ryðbrúnar áherslur með efri valmynd, árgangs- og lotuvali til vinstri og þéttum miðalista. Miðarnir hafa sýnilega aðgerð til að opna fyrir hóp og til að breyta; tilvísun í kjarnadæmi má opna í listanum. Nemendasíða, spurningar, ritill og niðurstöður nota sama útlit. Uppfærslan breytir ekki gagnagrunninum eða aðgangskerfinu.
+Krembakgrunnur og ryðbrúnar áherslur með efri valmynd, árgangs- og lotuvali til vinstri og þéttum miðalista. Miðarnir hafa sýnilega aðgerð til að opna fyrir hóp og til að breyta; tilvísun er valfrjáls í ritlinum og er ekki endurtekin í miðalistanum. Nemendasíða, spurningar, ritill og niðurstöður nota sama útlit. Ljóst og dökkt útlit nota sömu liti og forskoðunin og valið má vista í vafra. Dagsetningar nota föst íslensk mánaðarheiti. Tómar lokaðar fyrirlagnir eru nú eyðanlegar. Einkafallið `utgongumidar.validate_ticket` hefur verið uppfært í lifandi gagnagrunni til að leyfa tóma eða ósenda tilvísun; aðgangsheimildir og önnur skilyrði eru óbreytt.
 
 ## Hvað fylgir
 
@@ -67,16 +67,18 @@ Svör eru varðveitt þar til kennari eyðir viðkomandi lokaðri fyrirlögn. Ey
 - Nýja lotuútflutningsfallið var staðfest í lifandi gagnagrunni með kennarahlutverki; nafnlaus aðgangur að útflutningi er bannaður. Fyrirliggjandi gögn (7 miðar, 1 fyrirlögn og 1 svar við uppfærslu) héldust óbreytt. Engum notendaniðurstöðum var eytt við þróun.
 - Lifandi HTTP-prófanir staðfestu að nemendaviðmótið svarar, óinnskráður notandi fær ekki að kalla kennarafallið og svarataflan er ekki birt beint í Data API. Beinar töfluheimildir voru einnig yfirfarnar í gagnagrunninum.
 - TypeScript-yfirferð og framleiðslubygging gengu upp.
-- 67 gagnagrunnsprófanir keyrðu raunverulegu SQL-föllin í PGlite/PostgreSQL með prófunarhlutverkum. Þær ná meðal annars yfir heimildir, eigendur, falda svarlykla, innsláttarvillur, tölusnið, fjölval, vikmörk, afrit spurninga, lokun og endurtekin skil.
+- 76 gagnagrunnsprófanir keyrðu raunverulegu SQL-föllin í PGlite/PostgreSQL með prófunarhlutverkum. Þær ná meðal annars yfir heimildir, eigendur, falda svarlykla, innsláttarvillur, tölusnið, fjölval, vikmörk, afrit spurninga, lokun og endurtekin skil.
 - 12 prófanir á biðlaratengingu staðfestu meðal annars GitHub-undirmöppur í hlekkjum, kennaratákn og nafnlaus nemendaköll.
-- 18 prófanir á samantekt og XLSX-staðfestingu: nýjasta svar, aðskilnaður hópa, Unicode-nöfn, týnd svör, breyttar spurningar, tölugildi og vernd gegn því að nöfn séu túlkuð sem Excel-formúlur.
+- 19 prófanir á samantekt og XLSX-staðfestingu: nýjasta svar, aðskilnaður hópa, Unicode-nöfn, týnd svör, breyttar spurningar, tölugildi og vernd gegn því að nöfn séu túlkuð sem Excel-formúlur.
 - Kennaranotandi og kennaraheimild eru virk. Sjö miðarnir fyrir lotu 28 eru í Supabase. Auth-mörk eru hermd í staðbundnum prófum; nýja útgáfan bíður upphleðslu á GitHub Pages.
-- Útlitsútgáfa 1.2: TypeScript-yfirferð og framleiðslubygging gengu upp. Sjónræn vafraprófun var ótiltæk vegna bilunar í forskoðunarumhverfi. Prófa þarf útlit og flakk á birtum vef eftir upphleðslu.
+- Útgáfa 1.3: TypeScript-yfirferð, 19 dagsetninga-/tilvísunarprófanir og framleiðslubygging gengu upp. Sjónræn vafraprófun var ótiltæk vegna bilunar í forskoðunarumhverfi. Prófa þarf útlit og flakk á birtum vef eftir upphleðslu.
 
 Supabase Advisors voru keyrðir á lifandi verkefninu. Ábending um óvísaðan erlendan lykil var lagfærð með vísi á `sessions.ticket_id`. Aðgangsábendingar voru yfirfarnar: [RLS án policies](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) er viljandi sjálfgefin lokun einkataflna. [Nafnlaus execute-heimild](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable) er aðeins á nemendaföllunum tveimur. [Execute-heimildir innskráðra](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable) eru takmarkaðar við fimm viðmótsföll; kennaraföll sannreyna kennaraheimild og eiganda. Almennum töfluheimildum eða RLS-reglum var ekki bætt við til að fela þessar ábendingar.
 
+Supabase bendir einnig á að [vörn gegn þekktum lekuðum lykilorðum](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection) sé óvirk. Þeirri Auth-stillingu var ekki breytt í þessari uppfærslu.
+
 ## Næsti áfangi
 
-PDF/Word-upphleðsla og sjálfvirk gervigreindargerð fylgja ekki. Miðar eru nú samdir í ritlinum eða fluttir inn sem JSON. `coreOnly: true` er staðfesting kennara; forritið getur ekki sjálft sannreynt að texti komi úr kjarnadæmum. Upprunaleg ChatGPT Sites-gögn eru ekki flutt sjálfkrafa í nýja gagnagrunninn.
+PDF/Word-upphleðsla og sjálfvirk gervigreindargerð fylgja ekki. Miðar eru nú samdir í ritlinum eða fluttir inn sem JSON. `coreOnly: true` er föst merking á miðunum; forritið getur ekki sjálft sannreynt að texti komi úr kjarnadæmum. Upprunaleg ChatGPT Sites-gögn eru ekki flutt sjálfkrafa í nýja gagnagrunninn.
 
 GGJ · Hlíðaskóli · Gudborg.Gna.Jonsdottir@Reykjavik.is

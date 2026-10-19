@@ -39,7 +39,7 @@ export function feedbackFor(learner:Learner,slots:Slot[]){
   slot.ticket.questions.forEach((q,i)=>{
    const label=`${slot.label}, sp. ${i+1}`;
    if(attempt.reply.correct[i])success.push(label);
-   else practice.push(`${label}: ${q.practice?.trim()||'Æfðu sambærilegt kjarnadæmi: '+q.prompt}\nSjá: ${slot.ticket.source}`);
+   else practice.push(`${label}: ${q.practice?.trim()||'Æfðu sambærilegt dæmi: '+q.prompt}${slot.ticket.source?.trim()?'\nSjá: '+slot.ticket.source.trim():''}`);
   });
   if(attempt.reply.confidence<3)support.push(`${slot.label}: ${confidenceLabels[attempt.reply.confidence-1]}`);
  }

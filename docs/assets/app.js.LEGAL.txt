@@ -75,10 +75,12 @@ lucide-react/dist/esm/icons/download.mjs:
 lucide-react/dist/esm/icons/file-spreadsheet.mjs:
 lucide-react/dist/esm/icons/folder.mjs:
 lucide-react/dist/esm/icons/lock-keyhole.mjs:
+lucide-react/dist/esm/icons/moon.mjs:
 lucide-react/dist/esm/icons/plus.mjs:
 lucide-react/dist/esm/icons/radio.mjs:
 lucide-react/dist/esm/icons/refresh-cw.mjs:
 lucide-react/dist/esm/icons/search.mjs:
+lucide-react/dist/esm/icons/sun.mjs:
 lucide-react/dist/esm/icons/trash-2.mjs:
 lucide-react/dist/esm/icons/upload.mjs:
 lucide-react/dist/esm/lucide-react.mjs:
