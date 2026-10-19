@@ -2,6 +2,10 @@
 
 **Byrjaðu á [BYRJA-HER.md](BYRJA-HER.md).** Tilbúin `index.html` er á rótinni; stuðningsskrár eru í `docs/`. Veldu `main` og `/(root)` í GitHub Pages. Forsíðan birtist án Supabase; tenging er nauðsynleg áður en tekið er við svörum. ZIP-skráin hefur enga auka ytri möppu.
 
+## Útlitsuppfærsla 1.2
+
+Krembakgrunnur og ryðbrúnar áherslur með efri valmynd, árgangs- og lotuvali til vinstri og þéttum miðalista. Miðarnir hafa sýnilega aðgerð til að opna fyrir hóp og til að breyta; tilvísun í kjarnadæmi má opna í listanum. Nemendasíða, spurningar, ritill og niðurstöður nota sama útlit. Uppfærslan breytir ekki gagnagrunninum eða aðgangskerfinu.
+
 ## Hvað fylgir
 
 - Nemendasíða með kóða, beinum hlekkjum og QR-kóða; engin nemendainnskráning.
@@ -67,7 +71,7 @@ Svör eru varðveitt þar til kennari eyðir viðkomandi lokaðri fyrirlögn. Ey
 - 12 prófanir á biðlaratengingu staðfestu meðal annars GitHub-undirmöppur í hlekkjum, kennaratákn og nafnlaus nemendaköll.
 - 18 prófanir á samantekt og XLSX-staðfestingu: nýjasta svar, aðskilnaður hópa, Unicode-nöfn, týnd svör, breyttar spurningar, tölugildi og vernd gegn því að nöfn séu túlkuð sem Excel-formúlur.
 - Kennaranotandi og kennaraheimild eru virk. Sjö miðarnir fyrir lotu 28 eru í Supabase. Auth-mörk eru hermd í staðbundnum prófum; nýja útgáfan bíður upphleðslu á GitHub Pages.
-- Sjónræn vafraprófun nýju útgáfunnar var ótiltæk vegna bilunar í forskoðunarumhverfi. Prófa þarf möppur, eyðingarstaðfestingu og niðurhal á birtum vef eftir upphleðslu.
+- Útlitsútgáfa 1.2: TypeScript-yfirferð og framleiðslubygging gengu upp. Sjónræn vafraprófun var ótiltæk vegna bilunar í forskoðunarumhverfi. Prófa þarf útlit og flakk á birtum vef eftir upphleðslu.
 
 Supabase Advisors voru keyrðir á lifandi verkefninu. Ábending um óvísaðan erlendan lykil var lagfærð með vísi á `sessions.ticket_id`. Aðgangsábendingar voru yfirfarnar: [RLS án policies](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) er viljandi sjálfgefin lokun einkataflna. [Nafnlaus execute-heimild](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable) er aðeins á nemendaföllunum tveimur. [Execute-heimildir innskráðra](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable) eru takmarkaðar við fimm viðmótsföll; kennaraföll sannreyna kennaraheimild og eiganda. Almennum töfluheimildum eða RLS-reglum var ekki bætt við til að fela þessar ábendingar.
 

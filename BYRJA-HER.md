@@ -4,9 +4,11 @@
 
 Aðalskráin `index.html` er beint á rót pakkans. Stuðningsskrár eru í `docs`. Þú þarft ekki að setja upp forrit á tölvunni eða keyra byggingarskipanir til að birta hana.
 
-## Uppfærsla 19. október 2026 · útgáfa 1.1
+## Uppfærsla 19. október 2026 · útgáfa 1.2
 
-Kennaraaðgangurinn og sjö miðarnir fyrir lotu 28 eru þegar í Supabase. Þú notar sama netfang og lykilorð og áður.
+Útlitið sameinar hlýjan krembakgrunn og ryðbrúnar áherslur með þéttum miðalista, efri valmynd og lotum vinstra megin. Í síma raðast árgangar og lotur efst.
+
+Kennaraaðgangurinn, miðarnir og niðurstöður eru í sama Supabase-verkefni. Þú notar sama netfang og lykilorð og áður. Ekki þarf að keyra SQL eða stofna aðgang aftur vegna útlitsbreytingarinnar.
 
 ### Uppfæra núverandi GitHub-vef
 
